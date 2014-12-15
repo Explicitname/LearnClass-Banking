@@ -16,7 +16,7 @@ Account::Account(void):balance(0)
 vector<string> Account::Report()
 {
 	vector<string> report;
-	report.push_back("Balance is ") + to_string(balance);
+	report.push_back("Balance is " + to_string(balance));
 	report.push_back("Transactions: ");
 	for (auto t:log)
 	{
@@ -47,7 +47,19 @@ bool Account::Withdraw(int amt)
 	{
 		if (balance >= amt)
 		{
+			balance -= amt;
+			log.push_back(Transaction(amt, "Withdraw"));
+			return true;
 
 		}
+		else
+		{
+			return false;
+
+		}
+	}
+	else
+	{
+		return false;
 	}
 }
